@@ -1,4 +1,4 @@
-# Android Chat App entirely built with Jetpack Compose (in development)
+# Android Layout Designer App entirely built with Jetpack Compose (in development)
 
 ![Run Unit Tests](https://github.com/mobiledevpro/closetalk.app/actions/workflows/tests.yml/badge.svg)
 [![CodeFactor](https://www.codefactor.io/repository/github/mobiledevpro/closetalk.app/badge)](https://www.codefactor.io/repository/github/mobiledevpro/closetalk.app)
