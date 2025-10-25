@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <com.google.android.material.appbar.AppBarLayout android:fitsSystemWindows="true" android:layout_width="fill_parent" android:layout_height="wrap_content">
+        <com.google.android.material.appbar.MaterialToolbar android:id="@id/toolbar" android:layout_width="fill_parent" android:layout_height="wrap_content" android:minHeight="?actionBarSize" app:subtitleCentered="true" app:subtitleTextAppearance="@style/TextAppearance.MaterialComponents.Body2" app:titleTextAppearance="@style/AppTheme.ToolbarStyle" />
+    </com.google.android.material.appbar.AppBarLayout>
+    <LinearLayout android:orientation="horizontal" android:background="?colorSurfaceVariant" android:layout_width="fill_parent" android:layout_height="wrap_content">
+        <TextView android:textAppearance="@style/TextAppearance.MaterialComponents.Body2" android:id="@id/toolbar_filename" android:paddingBottom="2.0dip" android:layout_width="0.0dip" android:layout_height="wrap_content" android:layout_marginLeft="16.0dip" android:layout_marginRight="16.0dip" android:layout_weight="1.0" />
+        <TextView android:textSize="13.0sp" android:gravity="center" android:id="@id/position_display" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginRight="16.0dip" />
+    </LinearLayout>
+    <io.github.rosemoe.sora.widget.CodeEditor android:id="@id/editor" android:layout_width="fill_parent" android:layout_height="0.0dip" android:layout_weight="1.0" />
+    <View
+        android:background="@android:color/colorGray"
+        <!-- ffc7c7c7 -->
+        android:layout_width="fill_parent"
+        android:layout_height="1.0dip" />
+    <HorizontalScrollView android:scrollbars="none" android:layout_width="fill_parent" android:layout_height="wrap_content">
+        <com.mcal.editor.view.SymbolInputView android:id="@id/symbol_input" android:layout_width="fill_parent" android:layout_height="36.0dip" />
+    </HorizontalScrollView>
+    <LinearLayout android:orientation="vertical" android:id="@id/search_panel" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="wrap_content">
+        <EditText android:id="@id/search_editor" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginLeft="16.0dip" android:layout_marginRight="16.0dip" android:hint="@string/text_to_search" />
+        <EditText android:id="@id/replace_editor" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginLeft="16.0dip" android:layout_marginRight="16.0dip" android:hint="@string/replacement" />
+        <LinearLayout android:layout_gravity="center_horizontal" android:orientation="horizontal" android:paddingBottom="5.0dip" android:layout_width="fill_parent" android:layout_height="wrap_content" android:paddingStart="8.0dip" android:paddingEnd="8.0dip">
+            <Button android:id="@id/buttonGotoLast" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/layout_tv_last" android:layout_weight="1.0" style="@style/ButtonBarStyle" />
+            <Button android:id="@id/buttonGotoNext" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/layout_tv_next" android:layout_weight="1.0" style="@style/Widget.Material3.Button.TextButton" />
+            <Button android:id="@id/buttonReplace" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/layout_tv_replace" android:layout_weight="1.0" style="@style/Widget.Material3.Button.TextButton" />
+            <Button android:id="@id/buttonReplaceAll" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/layout_tv_replaceAll" android:layout_weight="1.0" style="@style/Widget.Material3.Button.TextButton" />
+            <Button android:id="@id/menu" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/menu" android:layout_weight="1.0" style="@style/Widget.Material3.Button.TextButton" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

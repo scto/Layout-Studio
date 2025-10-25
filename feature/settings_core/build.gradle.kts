@@ -5,7 +5,7 @@ plugins {
 
 
 dependencies {
-    api(libs.data.store)
+    api(libs.androidx.data.store)
     api(libs.protobuf.kotlin)
 }
 

@@ -7,6 +7,7 @@ plugins {
     alias(libs.plugins.android.library) apply false
     alias(libs.plugins.kotlin.android) apply false
     alias(libs.plugins.kotlin.kapt) apply false
+    alias(libs.plugins.kotlin.ksp) apply false
     alias(libs.plugins.compose.compiler) apply false
 
     // To generate a module graph
@@ -42,7 +43,7 @@ moduleGraphConfig {
     orientation.set(Orientation.LEFT_TO_RIGHT) //optional
     setStyleByModuleType.set(false)
 
-    focusedModulesRegex.set(".*(navigation|home).*")
+    focusedModulesRegex.set(".*(navigation|people_list|people_core).*")
 
     theme.set(
         Theme.BASE(

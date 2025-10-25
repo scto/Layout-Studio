@@ -19,7 +19,7 @@ dependencies {
 
     implementation(libs.bundle("lifecycle"))
     implementation(libs.library("coil"))
-    implementation(libs.library("activity.ktx"))
+    implementation(libs.library("androidx.activity.ktx"))
 
     //Crashlytics
     implementation(project(":core:analytics"))

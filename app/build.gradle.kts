@@ -15,12 +15,12 @@ plugins {
 }
 
 android {
-    namespace = "com.mobiledevpro.apptemplate.compose"
+    namespace = "com.scto.layoutstudio"
     compileSdk = libs.versions.sdk.compile.get().toInt()
 
 
     defaultConfig {
-        applicationId = "com.mobiledevpro"
+        applicationId = "com.scto.layoutstudio"
         minSdk = libs.versions.sdk.min.get().toInt()
         targetSdk = libs.versions.sdk.target.get().toInt()
         versionCode = libs.versions.app.version.code.get().toInt()
@@ -81,26 +81,24 @@ android {
     productFlavors {
         create("production") {
             dimension = "default"
-            applicationIdSuffix = ".closetalk.app"
+            applicationIdSuffix = ".layoutstudio"
         }
 
         create("dev") {
             dimension = "default"
-            applicationIdSuffix = ".apptemplate.compose"
+            applicationIdSuffix = ".dev"
             isDefault = true
         }
     }
 
     compileOptions {
-        android.compileOptions.isCoreLibraryDesugaringEnabled = true
-
-        sourceCompatibility = JavaVersion.VERSION_17
-        targetCompatibility = JavaVersion.VERSION_17
+        isCoreLibraryDesugaringEnabled = true
     }
 
-    kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_17.toString()
+    kotlin {
+        jvmToolchain(17)
     }
+
 
     buildFeatures {
         compose = true
@@ -122,6 +120,7 @@ dependencies {
 
     implementation(libs.firebase.performance)
     implementation(projects.core.analytics)
+    implementation(projects.core.database)
 
     testApi(libs.bundles.test.common)
 
@@ -137,6 +136,7 @@ dependencies {
     }
 
     implementation(projects.feature.main)
+    implementation(projects.feature.sync)
 }
 
 

@@ -11,7 +11,7 @@ android.testOptions {
 }
 
 dependencies {
-    androidTestImplementation(platform(libs.library("compose.bom")))
+    androidTestImplementation(platform(libs.library("androidx.compose.bom")))
     androidTestImplementation(libs.bundle("test.android"))
     androidTestImplementation(libs.bundle("test.koin"))
 

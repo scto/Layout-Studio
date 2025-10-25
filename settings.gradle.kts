@@ -15,13 +15,19 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
-rootProject.name = "App-Template-Compose"
+rootProject.name = "Layout-Studio"
 
 include(":app")
-include(":core:ui")
-include(":core:navigation")
-include(":core:domain")
+
+include(":core:analytics")
 include(":core:coroutines")
+include(":core:database")
+include(":core:di")
+include(":core:domain")
+include(":core:firestore")
+include(":core:navigation")
+include(":core:ui")
+include(":core:util")
 
 include(":feature:home")
 include(":feature:onboarding")
@@ -31,8 +37,10 @@ include(":feature:people_list")
 include(":feature:user_profile")
 include(":feature:people_profile")
 include(":feature:people")
-include(":core:di")
-include(":core:util")
-include(":core:analytics")
+
 include(":feature:settings_core")
 include(":feature:main")
+
+include(":feature:sync")
+
+include(":feature:people_core")

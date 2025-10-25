@@ -12,7 +12,7 @@ android {
 
 dependencies {
     //Compose
-    api(platform(libs.library("compose.bom")))
+    api(platform(libs.library("androidx-compose.bom")))
     api(libs.bundle("compose"))
     debugApi(libs.bundle("compose.debug"))
 }

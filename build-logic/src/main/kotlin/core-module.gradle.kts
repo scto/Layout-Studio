@@ -8,7 +8,7 @@ plugins {
 val projectName = project.name.replace("_", ".")
 
 android {
-    namespace = "com.mobiledevpro.$projectName"
+    namespace = "com.scto.layoutstudio.$projectName"
     compileSdk = libs.versionInt("sdk.compile")
 
     defaultConfig {
@@ -16,14 +16,11 @@ android {
     }
 
     compileOptions {
-        android.compileOptions.isCoreLibraryDesugaringEnabled = true
-
-        targetCompatibility = JavaVersion.VERSION_17
-        sourceCompatibility = JavaVersion.VERSION_17
+        isCoreLibraryDesugaringEnabled = true
     }
 
-    kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_17.toString()
+    kotlin {
+        jvmToolchain(17)
     }
 
     flavorDimensions += listOf("default")

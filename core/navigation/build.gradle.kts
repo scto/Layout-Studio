@@ -6,16 +6,16 @@ plugins {
 
 dependencies {
     //Compose
-    implementation(platform(libs.compose.bom))
+    implementation(platform(libs.androidx.compose.bom))
     implementation(libs.bundles.compose)
     debugImplementation(libs.bundles.compose.debug)
 
-    api(libs.navigation)
+    //api(libs.androidx.navigation.compose)
 
     api(projects.core.ui)
     api(projects.core.di)
+    
     implementation(projects.core.domain)
-
     implementation(projects.feature.home)
     implementation(projects.feature.onboarding)
     implementation(projects.feature.subscription)

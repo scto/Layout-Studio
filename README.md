@@ -1,16 +1,16 @@
-# Android Layout Designer App entirely built with Jetpack Compose (in development)
+# Android Chat App entirely built with Jetpack Compose (in development)
 
 ![Run Unit Tests](https://github.com/mobiledevpro/closetalk.app/actions/workflows/tests.yml/badge.svg)
 [![CodeFactor](https://www.codefactor.io/repository/github/mobiledevpro/closetalk.app/badge)](https://www.codefactor.io/repository/github/mobiledevpro/closetalk.app)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=mobiledevpro_Jetpack-Compose-ChatApp-Template&metric=alert_status)](https://sonarcloud.io/dashboard?id=mobiledevpro_Jetpack-Compose-ChatApp-Template)
 
-[![Kotlin Version](https://img.shields.io/badge/Kotlin-2.1.10-blue.svg?style=flat-square)](http://kotlinlang.org/)
-[![Compose Bom](https://img.shields.io/badge/Compose%20Bom-2025.03.00-blue.svg?style=flat-square)]([http://kotlinlang.org/](https://developer.android.com/jetpack/compose/bom/bom-mapping))
-[![Gradle](https://img.shields.io/badge/Gradle-8.9.0-blue.svg?style=flat-square)](https://developer.android.com/build/releases/gradle-plugin)
+[![Kotlin Version](https://img.shields.io/badge/Kotlin-2.2.0-blue.svg?style=flat-square)](http://kotlinlang.org/)
+[![Compose Bom](https://img.shields.io/badge/Compose%20Bom-2025.07.00-blue.svg?style=flat-square)]([http://kotlinlang.org/](https://developer.android.com/jetpack/compose/bom/bom-mapping))
+[![Gradle Plugin](https://img.shields.io/badge/Gradle-8.11.1-blue.svg?style=flat-square)](https://developer.android.com/build/releases/gradle-plugin)
 [![API](https://img.shields.io/badge/Min%20SDK-29%20[Android%2010]-blue.svg?style=flat-square)](https://github.com/AndroidSDKSources/android-sdk-sources-list)
-[![Target SDK](https://img.shields.io/badge/Target%20SDK-35%20[Android%2015]-blue.svg?style=flat-square)](https://developer.android.com/about/versions/13)
+[![Target SDK](https://img.shields.io/badge/Target%20SDK-36%20[Android%2016]-blue.svg?style=flat-square)](https://developer.android.com/about/versions/13)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg?style=flat-square)](http://www.apache.org/licenses/LICENSE-2.0)
-[![Android Studio](https://img.shields.io/badge/Android%20Studio%20Meerkat-2024.3.1-orange.svg?style=flat-square)](https://developer.android.com/studio/preview)
+[![Android Studio](https://img.shields.io/badge/Android%20Studio%20Narwhal-2025.1.2-orange.svg?style=flat-square)](https://developer.android.com/studio/preview)
 
 ![GitHub last commit](https://img.shields.io/github/last-commit/mobiledevpro/closetalk.app?color=red&style=flat-square)
 
@@ -93,7 +93,6 @@ adb logcat -v time -s FA FA-SVC
 * Run the flow: run in terminal ```maestro test -c maestro/people-profile-flow.yaml```
 * [Sample config](maestro/people-profile-flow.yaml)
 
-
 ## Module Graph
 
 ```mermaid
@@ -113,6 +112,7 @@ graph LR
     :core:coroutines["coroutines"]
     :core:util["util"]
     :core:analytics["analytics"]
+    :core:database["database"]
   end
   subgraph :feature
     :feature:home["home"]
@@ -121,6 +121,9 @@ graph LR
     :feature:chat_list["chat_list"]
     :feature:people["people"]
     :feature:user_profile["user_profile"]
+    :feature:people_list["people_list"]
+    :feature:people_core["people_core"]
+    :feature:people_profile["people_profile"]
   end
   :core:navigation --> :core:ui
   :core:navigation --> :core:di
@@ -131,19 +134,62 @@ graph LR
   :core:navigation --> :feature:chat_list
   :core:navigation --> :feature:people
   :core:navigation --> :feature:user_profile
+  :feature:people_list --> :core:ui
+  :feature:people_list --> :core:di
+  :feature:people_list --> :core:domain
+  :feature:people_list --> :core:coroutines
+  :feature:people_list --> :core:util
+  :feature:people_list --> :core:analytics
+  :feature:people_list --> :feature:people_core
+  :feature:people_core --> :core:database
+  :feature:people_core --> :core:ui
+  :feature:people_core --> :core:di
+  :feature:people_core --> :core:domain
+  :feature:people_core --> :core:coroutines
+  :feature:people_core --> :core:util
+  :feature:people_core --> :core:analytics
   :app --> :core:navigation
-  :feature:home --> :core:ui
-  :feature:home --> :core:di
-  :feature:home --> :core:domain
-  :feature:home --> :core:coroutines
-  :feature:home --> :core:util
-  :feature:home --> :core:analytics
+  :feature:people --> :feature:people_list
+  :feature:people_profile --> :feature:people_core
 
 classDef focus fill:#FA8140,stroke:#fff,stroke-width:2px,color:#fff;
 class :core:navigation focus
-class :feature:home focus
+class :feature:people_list focus
+class :feature:people_core focus
 ```
 ### How to create the module graph
+
+- Apply plugin https://github.com/iurysza/module-graph
+
+- Configure in the root `build.gradle.kts` file:
+
+```kotlin
+
+moduleGraphConfig {
+    readmePath.set("${rootDir}/README.md")
+    heading = "## Module Graph"
+    orientation.set(Orientation.LEFT_TO_RIGHT) //optional
+    setStyleByModuleType.set(false)
+
+    focusedModulesRegex.set(".*(navigation|home).*")
+
+    theme.set(
+        Theme.BASE(
+            mapOf(
+                "primaryTextColor" to "#fff",
+                "primaryColor" to "#5a4f7c",
+                "primaryBorderColor" to "#5a4f7c",
+                "lineColor" to "#f5a623",
+                "tertiaryColor" to "#40375c",
+                "fontSize" to "12px",
+            ),
+            focusColor = "#FA8140"
+        ),
+    )
+}
+```
+
+- Run the following command to generate the module graph and update the README file:
 
 ```kotlin
  ./gradlew createModuleGraph
